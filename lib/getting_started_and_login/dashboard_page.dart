@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key});
+  final String? displayName;
+  const DashboardPage({Key? key, this.displayName }): super(key: key);
   
   @override
   DashboardPageState createState() => DashboardPageState();
@@ -10,13 +12,27 @@ class DashboardPage extends StatefulWidget {
 class DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'LeafyPot_Dashboard',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            left: 0,
+            child: Image.asset(
+              'asset/logo.png',
+              height: 70,
+              fit: BoxFit.contain,
+            ),
+          ),
+          const Positioned(
+            top: 50,
+            left: 0,
+            child: Icon(
+              Icons.circle_notifications
+            ),
+          ),
+        ],
       ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(),
     );
     throw UnimplementedError();
   }

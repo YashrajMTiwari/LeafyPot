@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "817477625623",
+    "project_id": "leafypot-10bba",
+    "storage_bucket": "leafypot-10bba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817477625623:android:c3a4bf041f6015b76af952",
+        "android_client_info": {
+          "package_name": "com.example.leafypot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817477625623-a60cfffo90qre486h9kkmq6ec55nk4ss.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.leafypot",
+            "certificate_hash": "44fc7409961fc68b9efefdbaf5c938d0c5ae33a1"
+          }
+        },
+        {
+          "client_id": "817477625623-0qe6ta0cfl1996gsn0s4c9756b3igrrl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDExlEFWTWyB6mSY_y73bk95RgwlSQkArc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "817477625623-0qe6ta0cfl1996gsn0s4c9756b3igrrl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
