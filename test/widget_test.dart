@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:leafypot/getting_started_and_login/greeting_page.dart';
+import 'package:leafypot/greeting_page.dart';
 
 
 

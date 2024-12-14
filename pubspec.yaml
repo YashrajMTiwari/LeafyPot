@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  dio: ^5.0.0
   flutter:
     sdk: flutter
 
@@ -37,7 +38,20 @@ dependencies:
   cupertino_icons: ^1.0.8
   google_sign_in: ^6.2.1
   firebase_auth: ^5.3.1
+  firebase_storage: ^12.3.5
   firebase_core : ^3.6.0
+  cloud_firestore: ^5.4.4
+  supabase_flutter: ^2.8.0
+  image_picker: ^0.8.6
+  permission_handler: ^10.0.0
+  camera: ^0.11.0+2
+  image: ^3.0.1
+  exif: ^2.0.0
+  # image_cropper: ^3.0.1
+  path_provider: ^2.1.4
+  path: ^1.9.0
+  http: ^0.13.6
+  intl: ^0.17.0
 
 
 dev_dependencies:
@@ -66,6 +80,7 @@ flutter:
   assets:
     - asset/img.png
     - asset/logo.png
+    - asset/googlelogo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:leafypot/getting_started_and_login/greeting_page.dart';
-import 'package:leafypot/getting_started_and_login/login_page.dart';
-import 'getting_started_and_login/dashboard_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:leafypot/detection.dart';
+import 'package:leafypot/greeting_page.dart';
+import 'package:leafypot/login_page.dart';
+import 'dashboard_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -12,6 +14,8 @@ void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+  DetectionService detectionService = DetectionService();
+  detectionService.startBackgroundProcess();
   runApp(const MyApp());
 }
 
@@ -20,17 +24,39 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      routes : {
-        '/': (context) => const GreetingPage(),
+      routes: {
+        '/': (context) => const AuthChecker(),
         '/login': (context) => const LoginPage(),
         '/dashboard': (context) => const DashboardPage(),
       },
     );
-    throw UnimplementedError();
   }
+}
 
+
+class AuthChecker extends StatelessWidget {
+  const AuthChecker({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          if (snapshot.hasData) {
+            return const DashboardPage();
+          } else {
+            return const GreetingPage();
+          }
+        } else {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+      },
+    );
+  }
 }

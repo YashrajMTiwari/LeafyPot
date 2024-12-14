@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:leafypot/getting_started_and_login/dashboard_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../AuthService.dart';
+import 'AuthService.dart';
 
 
 class LoginPage extends StatefulWidget {

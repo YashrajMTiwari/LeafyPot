@@ -1,6 +1,9 @@
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:leafypot/getting_started_and_login/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'AuthService.dart';
 
 class GreetingPage extends StatefulWidget {
   const GreetingPage({super.key});
@@ -10,6 +13,8 @@ class GreetingPage extends StatefulWidget {
 }
 
 class GreetingPageState extends State<GreetingPage> {
+
+  final AuthService _authService = AuthService();
 
   final List<String> funFacts = [
     "Plants can communicate with each other through their roots.",
@@ -38,6 +43,20 @@ class GreetingPageState extends State<GreetingPage> {
   }
   @override
   Widget build(BuildContext context) {
+
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
+/*
+    var _isLoading = false;
+
+    void _onSubmit() {
+      setState(() => _isLoading = true);
+      Future.delayed(
+        const Duration(seconds: 2),
+          () => setState(() => _isLoading = false),
+      );
+    }
+*/
     return MaterialApp(
       title: 'LeafyPot_GreetingPage',
       theme: ThemeData(
@@ -54,7 +73,7 @@ class GreetingPageState extends State<GreetingPage> {
               height: double.infinity,
             ),
             Positioned(
-              top: 60,
+              top: screenHeight * 0.07,
               left: 0,
               right: 0,
               child: Image.asset(
@@ -64,13 +83,51 @@ class GreetingPageState extends State<GreetingPage> {
               ),
             ),
             Positioned(
-              bottom: 120,
+              bottom: screenHeight * 0.16,
               left: 0,
               right: 0,
               child: Center(
                 child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/login');
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return SizedBox(
+                            height: 200,
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  const Text("Login Options"),
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      User? user = await _authService.signInWithGoogle();
+                                      if (user != null) {
+                                        Navigator.pushReplacementNamed(context, '/dashboard');
+                                        if (kDebugMode) {
+                                          print('Signed in: ${user.displayName}');
+                                        }
+                                      } else {
+                                        if (kDebugMode) {
+                                          print('Failed to sign in with Google');
+                                        }
+                                      }
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color.fromRGBO(63, 107, 81, 1),
+                                        foregroundColor: Colors.white,
+                                        textStyle: const TextStyle(fontSize: 20),
+                                    ),
+                                    child: const Text("Google Login"),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }
+
+                      );
                     },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(63, 107, 81, 1),
